@@ -13,15 +13,15 @@ import { LogService } from '../log.service';
 export class IncomeComponent implements OnInit {
   @Input() wage: number
 
-  moneyMade: Observable<string>;
+  moneyMade$: Observable<string>;
 
   constructor(public logs: LogService) {
-    this.moneyMade = this.logs.getTime().pipe(
+    this.moneyMade$ = this.logs.getTime$().pipe(
       map(t => '$' + (t * this.wage).toFixed(2))
     );
   }
 
   ngOnInit(): void {
-    this.moneyMade.subscribe(m => document.title = m)
+    this.moneyMade$.subscribe(m => document.title = m)
   }
 }

@@ -7,17 +7,18 @@ import { LogService } from '../log.service';
   styleUrls: ['./timer.component.css']
 })
 export class TimerComponent implements OnInit {
+  buttonText: 'Start' | 'Stop' = 'Start';
 
-  constructor(private logs: LogService) { }
+  constructor(public logs: LogService) {
+    this.logs.isRunning$.subscribe(r => r ? this.buttonText = 'Stop' : this.buttonText = 'Start')
+  }
 
   ngOnInit(): void {
   }
 
-  public startTimer() {
-    this.logs.startTimer();
-  }
-
-  public stopTimer() {
-    this.logs.stopTimer();
+  public toggleTimer() {
+    this.logs.isRunning
+      ? this.logs.stopTimer()
+      : this.logs.startTimer();
   }
 }

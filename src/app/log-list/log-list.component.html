@@ -1,6 +1,6 @@
 <div class="log-list">
   <ul>
-    <ng-template *ngFor="let log of logs.getLogs() | async">
+    <ng-template *ngFor="let log of logs.getLogs$() | async">
       <li *ngIf="!log.end" class="current">{{ log.start.fromNow() }} - </li>
       <li *ngElse>{{ log.start.fromNow() }} - {{ log.end.fromNow() }}</li>
     </ng-template>
