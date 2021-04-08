@@ -1,8 +1,8 @@
 <div class="log-list">
   <ul>
-    <ng-template *ngFor="let log of logs.getLogs$() | async">
-      <li *ngIf="!log.end" class="current">{{ log.start.fromNow() }} - </li>
-      <li *ngElse>{{ log.start.fromNow() }} - {{ log.end.fromNow() }}</li>
-    </ng-template>
+    <li *ngFor="let log of logs.getLogs$() | async">
+      <span *ngIf="!log.end" class="current">{{ log.start.format('hh:mm') }} - </span>
+      <span *ngIf="!!log.end">{{ log.start.format('hh:mm') }} - {{ log.end.format('hh:mm') }}</span>
+    </li>
   </ul>
 </div>
